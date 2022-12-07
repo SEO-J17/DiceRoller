@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">DiceRoller</string>
+    <string name="roll_dice">주사위 돌리기</string>
 </resources>
