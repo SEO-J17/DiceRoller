@@ -2,10 +2,30 @@ package io.github.seoj17.diceroller
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import io.github.seoj17.diceroller.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainContract.View {
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var presenter: MainContract.Presenter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        presenter = MainPresenter(this)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        presenter.start()
+    }
+
+    override fun showDiceState() {
+        with(binding) {
+            rollDice.setOnClickListener {
+                val diceState = presenter.calculateNumber()
+                binding.dice.setImageResource(diceState)
+            }
+        }
     }
 }
