@@ -28,4 +28,9 @@ class MainActivity : AppCompatActivity(), MainContract.View {
             }
         }
     }
+
+    fun temp(
+        a:Int,
+        b: Int
+    ) = a + b
 }
