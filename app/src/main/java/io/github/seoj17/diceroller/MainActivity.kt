@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     fun temp(
         a:Int,
         b: Int,
-        c:String
+        c:String,
+        d:String
     ) = a + b
 }
