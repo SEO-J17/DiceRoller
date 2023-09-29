@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         a:Int,
         b: Int,
         c:String,
-        d:String
+        d:String,
+        f:String
     ) = a + b
 }
