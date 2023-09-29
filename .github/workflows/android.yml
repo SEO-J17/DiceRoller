@@ -7,6 +7,25 @@ on:
     branches: [ "develope" ]
 
 jobs:
+  ktlint:
+    name: Check Code Quality
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@master
+        with:
+          fetch-depth: 1
+
+      - name: ktlint
+        uses: ScaCap/action-ktlint@master
+        with:
+          github_token: $
+          reporter: github-pr-review
+          android: true
+          fail_on_error: true
+          level: warning
+  
   build:
 
     runs-on: ubuntu-latest
@@ -20,10 +39,8 @@ jobs:
         distribution: 'temurin'
         cache: gradle
 
-    - name: Build with Gradle
-      run: ./gradlew build -x test
-    - name: Run ktlint
-      run: ./gradlew ktlintCheck
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
     - name: Cache Gradle Packages
       uses: actions/cache@v3
       with:
